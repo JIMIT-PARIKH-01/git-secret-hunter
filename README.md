@@ -12,6 +12,8 @@ line does *not* fix the leak. This tool finds those, so you know what to **rotat
 
 Pure standard library (drives the system `git`). Python 3.8+ · GUI + CLI.
 
+![git-secret-hunter demo](docs/demo.png)
+
 ---
 
 ## Install & run
