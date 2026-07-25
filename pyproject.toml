@@ -1,0 +1,26 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "git-secret-hunter"
+version = "1.0.0"
+description = "Scan a git repository's entire commit history for leaked secrets"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+authors = [{ name = "Jimit Devangkumar Parikh" }]
+keywords = ["security", "git", "secrets", "credentials", "devsecops"]
+
+[project.urls]
+Homepage = "https://github.com/JIMIT-PARIKH-01/git-secret-hunter"
+
+[project.scripts]
+git-secret-hunter = "gitsecrets.cli:main"
+
+[tool.setuptools]
+packages = ["gitsecrets"]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
