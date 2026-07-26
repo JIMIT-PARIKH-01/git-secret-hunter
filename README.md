@@ -62,5 +62,40 @@ secret value and skips minified/lockfile/binary paths.
 Scan repositories you own or are authorized to audit. **If it finds a real secret, rotate
 it immediately** — removing it from the current file is not enough.
 
+## ⬇️ Download & Install
+
+**This is a public tool — download and use it on your device for free.**
+
+```bash
+# 1) Clone it
+git clone https://github.com/JIMIT-PARIKH-01/git-secret-hunter.git
+cd git-secret-hunter
+
+# 2) ...or download a ZIP (no git needed)
+#    https://github.com/JIMIT-PARIKH-01/git-secret-hunter/archive/refs/heads/main.zip
+
+# 3) ...or install the command straight from GitHub
+pip install git+https://github.com/JIMIT-PARIKH-01/git-secret-hunter.git
+```
+
+Then run it as shown in the usage section above (CLI `python -m ...`, or launch
+the GUI via `run.bat`).
+
+<details>
+<summary><b>🔒 Requesting access to a private tool</b></summary>
+
+Public tools install with the commands above. If a tool is **private**, access
+is granted by the owner through GitHub — a static link cannot unlock private
+code, only GitHub can:
+
+1. **Request access** — open an [access request](https://github.com/JIMIT-PARIKH-01/JIMIT-PARIKH-01/issues/new?template=tool-access-request.md&title=Access+request:+git-secret-hunter) or message on
+   [LinkedIn](https://www.linkedin.com/in/jimit-devangkumar-parikh/).
+2. The owner reviews it and, if approved, **adds you as a collaborator** on the
+   private repository.
+3. GitHub then lets you clone / download it with your own account. Access is
+   revoked the moment the owner removes you as a collaborator.
+
+</details>
+
 ## License
 MIT — see [LICENSE](./LICENSE).
