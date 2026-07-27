@@ -48,10 +48,25 @@ Secrets found   : 3
 ```
 
 ## What it detects
-AWS keys, Google API keys, GitHub tokens (classic + fine-grained), Stripe/Twilio/SendGrid
-keys, Slack tokens & webhooks, private-key blocks, JWTs, generic `api_key/secret/token`
-assignments, hard-coded passwords, and passwords in connection strings. De-duplicates by
-secret value and skips minified/lockfile/binary paths.
+**30 fingerprints** across cloud, provider and generic secrets:
+
+- **Cloud:** AWS access & secret keys, Google API keys, Google OAuth client secrets
+- **Source hosts:** GitHub tokens (classic + fine-grained), GitLab PATs
+- **Payments/comms:** Stripe, Twilio (SID + API key), SendGrid, Mailgun, Slack tokens & webhooks, Discord bot tokens & webhooks, Telegram bot tokens
+- **Package/registry:** npm, PyPI, DigitalOcean, Shopify, Square, Postman, OpenAI, Anthropic
+- **Generic:** private-key blocks (RSA/EC/OpenSSH/DSA/PGP), JWTs, `api_key/secret/token` assignments, hard-coded passwords, and passwords in connection strings
+
+De-duplicates by secret value and skips minified/lockfile/binary paths.
+
+## How it compares
+[gitleaks](https://github.com/gitleaks/gitleaks) and
+[trufflehog](https://github.com/trufflesecurity/trufflehog) are excellent, mature
+scanners with far more rules and live-credential verification — reach for them on
+large or high-stakes repos. **git-secret-hunter** trades breadth for being **tiny,
+pure-Python (zero install), and easy to read and extend** — the whole ruleset is
+one `patterns.py` file. It's built to make the *history* problem obvious and to
+drop into CI with a single `--exit-code` flag, not to replace a full secret-scanning
+platform.
 
 ## Use in CI (fail the build on a leak)
 ```yaml

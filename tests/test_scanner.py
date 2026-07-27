@@ -57,6 +57,29 @@ def test_private_key_pattern():
     assert patterns.PATTERNS["Private key block"].search("-----BEGIN RSA PRIVATE KEY-----")
 
 
+def test_new_provider_patterns_match():
+    samples = {
+        "GitLab PAT": "glpat-" + "a" * 20,
+        "npm token": "npm_" + "a" * 36,
+        "DigitalOcean token": "dop_v1_" + "a" * 64,
+        "Shopify access token": "shpat_" + "a" * 32,
+        "Discord webhook": "https://discord.com/api/webhooks/1234567890/AbC-def_123x",
+        "Telegram bot token": "123456789:AAF" + "a" * 32,
+        "OpenAI API key": "sk-" + "A" * 40,
+        "Anthropic API key": "sk-ant-api03-" + "A" * 30,
+        "Google OAuth client secret": "GOCSPX-" + "a" * 28,
+        "Postman API key": "PMAK-" + "a" * 24 + "-" + "b" * 34,
+    }
+    for rule, sample in samples.items():
+        assert patterns.PATTERNS[rule].search(sample), f"{rule} failed to match"
+
+
+def test_no_false_positive_on_plain_prose():
+    benign = "This is an ordinary sentence describing the project, no secrets here."
+    hits = [name for name, pat in patterns.PATTERNS.items() if pat.search(benign)]
+    assert hits == [], f"unexpected matches on prose: {hits}"
+
+
 def test_deduplicates_same_secret(tmp_path):
     repo = tmp_path / "d"
     repo.mkdir()
